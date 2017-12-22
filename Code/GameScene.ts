@@ -2,9 +2,12 @@ export { GameScene };
 
 import Engineer from "./Engineer";
 
+import { Monster } from "./Monster";
+
 class GameScene extends Engineer.Scene2D
 {
     private _Pause:boolean;
+    private _Monster:Monster;
     public get Pause():boolean { return this._Pause; }
     public set Pause(value:boolean) { this._Pause = value; }
     public constructor()
@@ -16,7 +19,7 @@ class GameScene extends Engineer.Scene2D
     public Init(): void
     {
         this.BackColor = Engineer.Color.FromRGBA(255, 255, 255, 255);
-        //Engineer.Reader.ReadFile("/Assets/Scenes/Game.tsn", this.SceneLoaded.bind(this));
+        this._Monster = new Monster(this);
     }
     public SceneLoaded(DataString)
     {
