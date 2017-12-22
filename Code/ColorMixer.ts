@@ -37,8 +37,6 @@ class ColorMixer
         else if(Args.KeyCode == 65) this._KeysDown.A = false;
         else if(Args.KeyCode == 83) this._KeysDown.S = false;
         else if(Args.KeyCode == 68) this._KeysDown.D = false;
-        console.log(Args.KeyCode);
-        console.log(this._KeysDown);
     }
     private Update() : void
     {
@@ -52,7 +50,6 @@ class ColorMixer
         if(this._KeysDown.E) Color.B = 255;
         else if(this._KeysDown.D) Color.B = 128;
         else Color.B = 0;
-        //console.log(Color);
         this._Sprite.Paint = Color;
         this._Sprite.Modified = true;
     }
