@@ -33,6 +33,6 @@ class MainMenu extends Engineer.Scene2D
     {
         let Scene = new GameScene();
         this._Game.AddScene(Scene);
-        this._Runner.SwitchScene("Game Scene", false);
+        this._Runner.SwitchScene("Game", false);
     }
 }

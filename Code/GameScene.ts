@@ -10,6 +10,7 @@ class GameScene extends Engineer.Scene2D
     public constructor()
     {
         super();
+        this.Name = "Game";
         this.Init();
     }
     public Init(): void
