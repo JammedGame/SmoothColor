@@ -20,14 +20,14 @@ class Monster
     {
         this._Lane = 2;
         this._Color = new Engineer.Sprite();
-        this._Color.Trans.Scale = new Engineer.Vertex(80,160,1);
+        this._Color.Trans.Scale = new Engineer.Vertex(130,270,1);
         this._Color.Paint = Engineer.Color.Black;
         this._Asset = new Engineer.Sprite();
-        this._Asset.Trans.Scale = new Engineer.Vertex(80,160,1);
+        this._Asset.Trans.Scale = new Engineer.Vertex(130,270,1);
         this._Mixer = new ColorMixer(this._Scene, this._Color);
         this._Scene.AddSceneObject(this._Color);
         this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
-        this.Move(new Engineer.Vertex(100, 440,0));
+        this.Move(new Engineer.Vertex(100, 1080, 0));
     }
     public Move(Position:Engineer.Vertex) : void
     {
@@ -37,7 +37,7 @@ class Monster
     public MoveToLane() : void
     {
         let Current = this._Color.Trans.Translation;
-        let New = new Engineer.Vertex(Current.X, this._Lane * 200 + 140, 0);
+        let New = new Engineer.Vertex(Current.X, this._Lane * 300 + 240, 0);
         this.Move(New);
     }
     private KeyDown(Game:Engineer.Game, Args:any) : void
