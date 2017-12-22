@@ -20,7 +20,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
-    "engineer-js": "0.0.38",
+    "engineer-js": "0.0.39",
     "ts-loader": "^2.3.2"
   }
 }
