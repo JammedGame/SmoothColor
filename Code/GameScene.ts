@@ -14,8 +14,8 @@ class GameScene extends Engineer.Scene2D
     }
     public Init(): void
     {
-        this.BackColor = Engineer.Color.FromRGBA(0, 0, 0, 255);
-        Engineer.Reader.ReadFile("/Assets/Scenes/Game.tsn", this.SceneLoaded.bind(this));
+        this.BackColor = Engineer.Color.FromRGBA(255, 255, 255, 255);
+        //Engineer.Reader.ReadFile("/Assets/Scenes/Game.tsn", this.SceneLoaded.bind(this));
     }
     public SceneLoaded(DataString)
     {
