@@ -75,7 +75,7 @@ class GameScene extends Engineer.Scene2D
         let Back:Engineer.Tile = new Engineer.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;
-        Back.Index = 0
+        Back.Index = 0;
         Back.Trans.Scale = new Engineer.Vertex(1920, 1085, 1);
         Back.Trans.Translation = new Engineer.Vertex(960, 540, 0);
         this._Back1 = Back;
