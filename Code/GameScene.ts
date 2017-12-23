@@ -5,6 +5,7 @@ import Engineer from "./Engineer";
 import { Monster } from "./Monster";
 import { HumanGen } from "./HumanGen";
 import { Score } from "./Score";
+import { Levels } from "./Levels";
 
 class GameScene extends Engineer.Scene2D
 {
@@ -33,8 +34,7 @@ class GameScene extends Engineer.Scene2D
         this.GenerateBackground()
         this._Monster = new Monster(this);
         this._Score = new Score(this);
-        this._HumanGen = new HumanGen(this,this._Score);
-        
+        this._HumanGen = new HumanGen(this, Levels[0], this._Score);
     }
     public SceneLoaded(DataString)
     {
@@ -49,6 +49,7 @@ class GameScene extends Engineer.Scene2D
     private SceneUpdate() : void
     {
         if(this._Pause) return;
+        if(this._HumanGen.Finished) return;
         // Update Code here
         this.MoveScene();
     }

@@ -3,6 +3,7 @@ import Engineer from "./Engineer";
 import { Human } from "./Human";
 import { Color } from "engineer-js";
 import { Score } from "./Score";
+import { HumanColorGen } from "./HumanColorGen";
 export { HumanGen };
 
 class HumanGen
@@ -10,18 +11,26 @@ class HumanGen
     private _GameScene:GameScene;
     private _Difficulty:number;    
     private _CurrLane:number;
-    private _TotalDistance:number = 960;
+    private _TotalDistance:number = 300;
     private _PrevPosX:number = -1;
     private _CurrPosX:number;
     private _Humans:Human[];
     private _Score:Score;
-
-    public constructor(GameScene:GameScene, Score:Score)
+    private _Level:any;
+    private _ColorGen:HumanColorGen;
+    public get Finished():boolean
+    {
+        return -this._GameScene.Trans.Translation.X > this._TotalDistance ||
+                this._Humans.length == 0;
+    }
+    public constructor(GameScene:GameScene, Level:any, Score:Score)
     {
         this._GameScene = GameScene;
         this._Humans = [];
+        this._Level = Level;
+        this._ColorGen = new HumanColorGen(this._Level);
         this._Score = Score;
-        for(let i=0;i<100;i++)
+        for(let i=0;i<this._Level.Humans;i++)
         {
             this.generateParameters(0);
         }
@@ -31,85 +40,9 @@ class HumanGen
         this._CurrLane = Math.round(Math.random() * 2);
         this._CurrPosX = Math.round(Math.random()*(Math.round(1920 / Math.log(difficulty+2)) - 400) + 400);
         this._TotalDistance += Math.abs(this._CurrPosX - this._PrevPosX) + this._CurrPosX;
-        let color:Engineer.Color = this.generateColor();
-        let colorPoints:number[]=[color.R,color.G,color.B];
-        let humanPoints:number;
-        for(let i=0;i<3;i++)
-        {
-            switch(colorPoints[i])
-            {
-                case 0: {colorPoints[i]=0;break}
-                case 128: {colorPoints[i]=1;break;}
-                case 255: {colorPoints[i]=2;break;}
-                default: {colorPoints[i]=0;break;}
-            }
-        }
-        console.log(colorPoints[0],colorPoints[1],colorPoints[2]);
-        if(colorPoints[0]==0 && colorPoints[1]==0 && colorPoints[2]==0)
-        {
-            humanPoints = 1; //black
-        }
-        else if(colorPoints[0]==colorPoints[1] && colorPoints[0]==colorPoints[2] && colorPoints[1]==colorPoints[2] && colorPoints[0]==1)
-        {
-            humanPoints = 2; //grey
-        }
-        else if(colorPoints[0]==1 && colorPoints[1]==0 && colorPoints[2]==0)
-        {
-            humanPoints = 2; //light red
-        }
-        else if(colorPoints[0]==0 && colorPoints[1]==1 && colorPoints[2]==0)
-        {
-            humanPoints = 2; //light green
-        }
-        else if(colorPoints[0]==0 && colorPoints[1]==0 && colorPoints[2]==1)
-        {
-            humanPoints = 2; //light blue
-        }
-        else if(colorPoints[0]==2 && colorPoints[1]==0 && colorPoints[2]==0)
-        {
-            humanPoints = 2; //dark red
-        }
-        else if(colorPoints[0]==0 && colorPoints[1]==2 && colorPoints[2]==0)
-        {
-            humanPoints = 2; //dark green
-        }
-        else if(colorPoints[0]==0 && colorPoints[1]==0 && colorPoints[2]==2)
-        {
-            humanPoints = 2; //dark blue
-        }
-        else if(colorPoints[0]==colorPoints[1] && colorPoints[0]==colorPoints[2] && colorPoints[1]==colorPoints[2] && colorPoints[0]==2)
-        {
-            humanPoints = 3; //white
-        }
-        else if(colorPoints[0]==colorPoints[1] || colorPoints[0]==colorPoints[2] || colorPoints[1]==colorPoints[2])
-        {
-            humanPoints = 4; //one equal
-        }
-        else if(colorPoints[0]!=colorPoints[1] && colorPoints[0]!=colorPoints[2] && colorPoints[1]!=colorPoints[2])
-        {
-            humanPoints = 5; //all different
-        }
-        else 
-        {
-            humanPoints = 6;
-        }      
-        this._Humans.push(new Human(this._CurrLane, color, humanPoints, this._TotalDistance, this._GameScene,this._Score));
+        let Data = this._ColorGen.Gen();
+        this._Humans.push(new Human(this._CurrLane, Data.Color, Data.Score, this._TotalDistance, this._GameScene,this._Score));
         this._PrevPosX = this._CurrPosX;
-    }
-    public generateColor()
-    {
-        let roll:number[]=[0,0,0];
-        roll[0] = Math.round(Math.random()*2);
-        roll[1] = Math.round(Math.random()*2);
-        roll[2] = Math.round(Math.random()*2);
-        for(let i=0; i<3; i++)
-        {
-            if(roll[i]==0)roll[i]=0;
-            else if(roll[i]==1)roll[i]=128;
-            else if(roll[i]==2)roll[i]=255;
-        }
-        
-        return Engineer.Color.FromRGBA(roll[0], roll[1], roll[2], 255);
     }
     public TryEatHumans(PosX:number, Lane:number, Color:Engineer.Color) : boolean
     {
@@ -122,6 +55,13 @@ class HumanGen
             {
                 this._Humans[i].Eat();
                 Eat = true;
+            }
+        }
+        for(let i = this._Humans.length-1; i>=0; i--)
+        {
+            if(this._Humans[i].Eaten)
+            {
+                this._Humans.splice(i,1);
             }
         }
         return Eat;
