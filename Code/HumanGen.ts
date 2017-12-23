@@ -74,8 +74,9 @@ class HumanGen
         
         return Engineer.Color.FromRGBA(roll[0], roll[1], roll[2], 255);
     }
-    public TryEatHumans(PosX:number, Lane:number, Color:Engineer.Color)
+    public TryEatHumans(PosX:number, Lane:number, Color:Engineer.Color) : boolean
     {
+        let Eat = false;
         for(let i in this._Humans)
         {
             if(this._Humans[i].Eaten) continue;
@@ -83,8 +84,10 @@ class HumanGen
             && this.ColorsEqual(Color, this._Humans[i].Color))
             {
                 this._Humans[i].Eat();
+                Eat = true;
             }
         }
+        return Eat;
     }
     public ColorsEqual(Color1:Engineer.Color, Color2:Engineer.Color) : boolean
     {

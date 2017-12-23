@@ -44,6 +44,7 @@ class GameScene extends Engineer.Scene2D
     private MoveScene():void
     {
         this.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X - 2, this.Trans.Translation.Y, 0);
-        this._HumanGen.TryEatHumans(-this.Trans.Translation.X + 200, this._Monster.Lane, this._Monster.Color);
+        let Eat:boolean = this._HumanGen.TryEatHumans(-this.Trans.Translation.X + 250, this._Monster.Lane, this._Monster.Color);
+        if(Eat) this._Monster.Eat();
     }
 }
