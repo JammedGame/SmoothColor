@@ -22,8 +22,10 @@ class Monster
         this._Color = new Engineer.Sprite();
         this._Color.Trans.Scale = new Engineer.Vertex(230,270,1);
         this._Color.Paint = Engineer.Color.Black;
+        this._Color.Fixed = true;
         this._Asset = new Engineer.Sprite();
         this._Asset.Trans.Scale = new Engineer.Vertex(230,270,1);
+        this._Asset.Fixed = true;
         this.LoadSets();
         this._Mixer = new ColorMixer(this._Scene, this._Color);
         this._Scene.AddSceneObject(this._Color);

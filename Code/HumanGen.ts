@@ -27,7 +27,7 @@ class HumanGen
     {
         this._CurrLane = Math.round(Math.random() * 2);
                 
-                this._CurrPosX = Math.round(Math.random()*(Math.round(600/(difficulty+1)) - 200) + 200);
+                this._CurrPosX = Math.round(Math.random()*(Math.round(1920 / Math.log(difficulty+2)) - 400) + 400);
                 
                 this._TotalDistance += Math.abs(this._CurrPosX - this._PrevPosX) + this._CurrPosX;
                 console.log(this._TotalDistance, this._CurrPosX, this._PrevPosX);

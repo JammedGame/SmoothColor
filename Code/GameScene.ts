@@ -17,6 +17,7 @@ class GameScene extends Engineer.Scene2D
         super();
         this.Name = "Game";
         this.Init();
+        this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
     public Init(): void
     {
@@ -38,5 +39,10 @@ class GameScene extends Engineer.Scene2D
     {
         if(this._Pause) return;
         // Update Code here
+        this.MoveScene();
+    }
+    private MoveScene():void
+    {
+        this.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X - 2, this.Trans.Translation.Y, 0);
     }
 }

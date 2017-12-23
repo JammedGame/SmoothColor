@@ -26,6 +26,7 @@ class Body extends Engineer.Sprite
         this.Trans.Scale = new Engineer.Vertex(200,200,1);
         let SpriteSet = new Engineer.SpriteSet(null, "Body", []);
         SpriteSet.Seed = 10;
+        this.Paint = Color;
         SpriteSet.Sprites.push("/Resources/Textures/Human/knight-frame2.png");
         this.SpriteSets.push(SpriteSet);
         GameScene.AddSceneObject(this);
