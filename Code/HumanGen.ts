@@ -21,7 +21,7 @@ class HumanGen
         this._GameScene = GameScene;
         this._Humans = [];
         this._Score = Score;
-        for(let i=0;i<10;i++)
+        for(let i=0;i<100;i++)
         {
             this.generateParameters(0);
         }

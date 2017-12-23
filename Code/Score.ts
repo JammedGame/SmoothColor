@@ -11,7 +11,7 @@ class Score
     
     public constructor(GameScene:GameScene)
     {       
-        this._TotalScore = 0;
+        this._TotalScore = 95;
         this._GameScene = GameScene;
         this.GenerateTiles();
              
@@ -36,14 +36,14 @@ class Score
     {   
         let digits:number[]=[0,0,0];
         this._TotalScore+=humanPoints;
-        let Score = this._TotalScore;
+        
+        for(let i=0;i<3;i++)digits[i]=Math.floor((this._TotalScore/Math.pow(10,i)))%10;                     
+      
         for(let i=0;i<3;i++)
         {
-            digits[i] = Score % 10;
-            Score /= 10;
-            Score = Math.floor(Score);
             this._Digit[i].Index = digits[2-i];
             this._Digit[i].Modified = true;
         }
+        
     }
 }
