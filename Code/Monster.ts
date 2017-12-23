@@ -20,13 +20,14 @@ class Monster
     {
         this._Lane = 2;
         this._Color = new Engineer.Sprite();
-        this._Color.Trans.Scale = new Engineer.Vertex(180,270,1);
+        this._Color.Trans.Scale = new Engineer.Vertex(230,270,1);
         this._Color.Paint = Engineer.Color.Black;
         this._Asset = new Engineer.Sprite();
-        this._Asset.Trans.Scale = new Engineer.Vertex(180,270,1);
+        this._Asset.Trans.Scale = new Engineer.Vertex(230,270,1);
         this.LoadSets();
         this._Mixer = new ColorMixer(this._Scene, this._Color);
         this._Scene.AddSceneObject(this._Color);
+        this._Scene.AddSceneObject(this._Asset);
         this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
         this.Move(new Engineer.Vertex(150, 840, 0));
     }
@@ -64,7 +65,11 @@ class Monster
     {
         let SpriteSet = new Engineer.SpriteSet(null, "Walk", []);
         SpriteSet.Seed = 10;
-        for(let i = 1; i < 10; i++) SpriteSet.Sprites.push("/Resources/Textures/Monster/frejm"+i+".png");
+        for(let i = 1; i < 10; i++) SpriteSet.Sprites.push("/Resources/Textures/Monster/hodanjekoza"+i+".png");
         this._Color.SpriteSets.push(SpriteSet);
+        let SpriteSet2 = new Engineer.SpriteSet(null, "Walk", []);
+        SpriteSet2.Seed = 10;
+        for(let i = 1; i < 10; i++) SpriteSet2.Sprites.push("/Resources/Textures/Monster/hodanje"+i+".png");
+        this._Asset.SpriteSets.push(SpriteSet2);
     }
 }
