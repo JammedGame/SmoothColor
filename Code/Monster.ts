@@ -43,7 +43,7 @@ class Monster
     public MoveToLane() : void
     {
         let Current = this._Color.Trans.Translation;
-        let New = new Engineer.Vertex(Current.X, this._Lane * 300 + 240, 0);
+        let New = new Engineer.Vertex(Current.X, this._Lane * 315 + 210, 0);
         this.Move(New);
     }
     private KeyDown(Game:Engineer.Game, Args:any) : void
