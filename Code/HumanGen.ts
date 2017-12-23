@@ -2,6 +2,7 @@ import { GameScene } from "./GameScene";
 import Engineer from "./Engineer";
 import { Human } from "./Human";
 import { Color } from "engineer-js";
+import { Score } from "./Score";
 export { HumanGen };
 
 class HumanGen
@@ -13,10 +14,13 @@ class HumanGen
     private _PrevPosX:number = -1;
     private _CurrPosX:number;
     private _Humans:Human[];
-    public constructor(GameScene:GameScene)
+    private _Score:Score;
+
+    public constructor(GameScene:GameScene, Score:Score)
     {
         this._GameScene = GameScene;
         this._Humans = [];
+        this._Score = Score;
         for(let i=0;i<10;i++)
         {
             this.generateParameters(0);
@@ -89,7 +93,7 @@ class HumanGen
         {
             humanPoints = 6;
         }      
-        this._Humans.push(new Human(this._CurrLane, color, humanPoints, this._TotalDistance, this._GameScene));
+        this._Humans.push(new Human(this._CurrLane, color, humanPoints, this._TotalDistance, this._GameScene,this._Score));
         this._PrevPosX = this._CurrPosX;
     }
     public generateColor()

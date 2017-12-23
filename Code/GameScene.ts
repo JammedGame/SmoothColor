@@ -4,6 +4,7 @@ import Engineer from "./Engineer";
 
 import { Monster } from "./Monster";
 import { HumanGen } from "./HumanGen";
+import { Score } from "./Score";
 
 class GameScene extends Engineer.Scene2D
 {
@@ -14,6 +15,7 @@ class GameScene extends Engineer.Scene2D
     private _Pause:boolean;
     private _Monster:Monster;
     private _HumanGen:HumanGen;
+    private _Score:Score;
     public get Pause():boolean { return this._Pause; }
     public set Pause(value:boolean) { this._Pause = value; }
     public constructor()
@@ -30,7 +32,9 @@ class GameScene extends Engineer.Scene2D
         this.BackColor = Engineer.Color.FromRGBA(255, 255, 255, 255);
         this.GenerateBackground()
         this._Monster = new Monster(this);
-        this._HumanGen = new HumanGen(this);
+        this._Score = new Score(this);
+        this._HumanGen = new HumanGen(this,this._Score);
+        
     }
     public SceneLoaded(DataString)
     {
