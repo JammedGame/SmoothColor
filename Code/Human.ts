@@ -38,12 +38,11 @@ class Body extends Engineer.Sprite
     public constructor(Lane:number, Color:Engineer.Color, PosX:number, GameScene:GameScene)
     {   
         super();
-        this.Trans.Translation = new Engineer.Vertex(PosX, 200 + Lane * 300, 2);
-        this.Trans.Scale = new Engineer.Vertex(200,200,1);
+        this.Trans.Translation = new Engineer.Vertex(PosX, 280 + Lane * 300, 2);
+        this.Trans.Scale = new Engineer.Vertex(85,175,1);
         let SpriteSet = new Engineer.SpriteSet(null, "Body", []);
-        SpriteSet.Seed = 10;
-        this.Paint = Color;
-        SpriteSet.Sprites.push("/Resources/Textures/Human/knight-frame2.png");
+        SpriteSet.Seed = 10;        
+        SpriteSet.Sprites.push("/Resources/Textures/Human/human.png");
         this.SpriteSets.push(SpriteSet);
         GameScene.AddSceneObject(this);
     }
@@ -53,9 +52,13 @@ class Shirt extends Engineer.Sprite
     public constructor(Lane:number, Color:Engineer.Color, PosX:number, GameScene:GameScene)
     {   
         super();
-        this.Trans.Translation = new Engineer.Vertex(PosX, 250 + Lane * 300, 3);
-        this.Trans.Scale = new Engineer.Vertex(20, 20, 1);
+        this.Trans.Translation = new Engineer.Vertex(PosX, 280 + Lane * 300, 3);
+        this.Trans.Scale = new Engineer.Vertex(85, 175, 1);
         this.Paint = Color;
+        let SpriteSet = new Engineer.SpriteSet(null, "Shirt", []);
+        SpriteSet.Seed = 10;
+        SpriteSet.Sprites.push("/Resources/Textures/Human/shirt.png");
+        this.SpriteSets.push(SpriteSet);
         GameScene.AddSceneObject(this);
     }
 }
