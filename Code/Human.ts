@@ -5,17 +5,33 @@ import { Sprite, PointCloud } from "three";
 
 class Human
 {
+    private _Lane:number;
+    private _PosX:number;
+    private _Color:Engineer.Color;
     private _Points;
     private _Body;
     private _Shirt;
     private _GameScene:GameScene;
-    
+    public get Lane():number { return this._Lane; }
+    public get PosX():number { return this._PosX; }
+    public get Color():Engineer.Color { return this._Color; }
+    public get Eaten():boolean { return !this._Body.Active; }
     public constructor(Lane:number, Color:Engineer.Color, PointsVal:number, PosX:number, GameScene:GameScene)
     {   
+        this._Lane = Lane;
+        this._PosX = PosX;
+        this._Color = Color;
         this._Body = new Body(Lane,Color, PosX, GameScene);
         this._Shirt = new Shirt(Lane, Color, PosX, GameScene);
         this._Points = new Points(Lane, PointsVal, PosX, GameScene);
-    }   
+    }
+    public Eat() : void
+    {
+        console.log("Eat!");
+        this._Body.Active = false;
+        this._Shirt.Active = false;
+        this._Points.Active = false;
+    }  
 }
 class Body extends Engineer.Sprite
 {    
@@ -54,7 +70,6 @@ class Points extends Engineer.Sprite
         SpriteSet.Seed = 10;
         SpriteSet.Sprites.push("/Resources/Textures/Human/broj2.png");
         this.SpriteSets.push(SpriteSet);
-        
         GameScene.AddSceneObject(this);
     }
 }

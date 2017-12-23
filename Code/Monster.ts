@@ -11,6 +11,8 @@ class Monster
     private _Color:Engineer.Sprite;
     private _Asset:Engineer.Sprite;
     private _Mixer:ColorMixer;
+    public get Lane():number { return this._Lane; }
+    public get Color():Engineer.Color { return this._Color.Paint; }
     public constructor(Scene:Engineer.Scene2D)
     {
         this._Scene = Scene;
