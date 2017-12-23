@@ -68,10 +68,10 @@ class Points extends Engineer.Sprite
     {   
         super();
         this.Trans.Translation = new Engineer.Vertex(PosX, 180 + Lane * 300, 1);
-        this.Trans.Scale = new Engineer.Vertex(25, 25, 1);
+        this.Trans.Scale = new Engineer.Vertex(35, 35, 1);
         let SpriteSet = new Engineer.SpriteSet(null, "Points", []);
         SpriteSet.Seed = 10;
-        SpriteSet.Sprites.push("/Resources/Textures/Human/broj2.png");
+        SpriteSet.Sprites.push("/Resources/Textures/Human/broj"+PointsVal+".png");
         this.SpriteSets.push(SpriteSet);
         GameScene.AddSceneObject(this);
     }

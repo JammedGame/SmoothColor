@@ -40,21 +40,54 @@ class HumanGen
                 default: {colorPoints[i]=0;break;}
             }
         }
+        console.log(colorPoints[0],colorPoints[1],colorPoints[2]);
         if(colorPoints[0]==0 && colorPoints[1]==0 && colorPoints[2]==0)
         {
-            humanPoints = 1;
+            humanPoints = 1; //black
         }
-        else if(colorPoints[0]==colorPoints[1] && colorPoints[0]==colorPoints[2] && colorPoints[1]==colorPoints[2]&&colorPoints[0]==255)
+        else if(colorPoints[0]==colorPoints[1] && colorPoints[0]==colorPoints[2] && colorPoints[1]==colorPoints[2] && colorPoints[0]==1)
         {
-            humanPoints = 2;
+            humanPoints = 2; //grey
         }
-        else if(colorPoints[0]==colorPoints[1] && colorPoints[0]==colorPoints[2] && colorPoints[1]==colorPoints[2]&&colorPoints[0]==128)
+        else if(colorPoints[0]==1 && colorPoints[1]==0 && colorPoints[2]==0)
         {
-            humanPoints = 3;
+            humanPoints = 2; //light red
+        }
+        else if(colorPoints[0]==0 && colorPoints[1]==1 && colorPoints[2]==0)
+        {
+            humanPoints = 2; //light green
+        }
+        else if(colorPoints[0]==0 && colorPoints[1]==0 && colorPoints[2]==1)
+        {
+            humanPoints = 2; //light blue
+        }
+        else if(colorPoints[0]==2 && colorPoints[1]==0 && colorPoints[2]==0)
+        {
+            humanPoints = 2; //dark red
+        }
+        else if(colorPoints[0]==0 && colorPoints[1]==2 && colorPoints[2]==0)
+        {
+            humanPoints = 2; //dark green
+        }
+        else if(colorPoints[0]==0 && colorPoints[1]==0 && colorPoints[2]==2)
+        {
+            humanPoints = 2; //dark blue
+        }
+        else if(colorPoints[0]==colorPoints[1] && colorPoints[0]==colorPoints[2] && colorPoints[1]==colorPoints[2] && colorPoints[0]==2)
+        {
+            humanPoints = 3; //white
+        }
+        else if(colorPoints[0]==colorPoints[1] || colorPoints[0]==colorPoints[2] || colorPoints[1]==colorPoints[2])
+        {
+            humanPoints = 4; //one equal
+        }
+        else if(colorPoints[0]!=colorPoints[1] && colorPoints[0]!=colorPoints[2] && colorPoints[1]!=colorPoints[2])
+        {
+            humanPoints = 5; //all different
         }
         else 
         {
-            humanPoints = 4;
+            humanPoints = 6;
         }      
         this._Humans.push(new Human(this._CurrLane, color, humanPoints, this._TotalDistance, this._GameScene));
         this._PrevPosX = this._CurrPosX;
