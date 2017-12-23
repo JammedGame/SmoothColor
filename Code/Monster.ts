@@ -3,6 +3,7 @@ export { Monster }
 import Engineer from "./Engineer";
 
 import { ColorMixer } from "./ColorMixer";
+import { FadeEffect } from "./FadeEffect";
 
 class Monster
 {
@@ -11,6 +12,7 @@ class Monster
     private _Color:Engineer.Sprite;
     private _Asset:Engineer.Sprite;
     private _Mixer:ColorMixer;
+    private _FadeEffects:FadeEffect[];
     public get Lane():number { return this._Lane; }
     public get Color():Engineer.Color { return this._Color.Paint; }
     public constructor(Scene:Engineer.Scene2D)
@@ -21,6 +23,7 @@ class Monster
     public Init() : void
     {
         this._Lane = 2;
+        this._FadeEffects = [];
         this._Color = new Engineer.Sprite();
         this._Color.Trans.Scale = new Engineer.Vertex(230,270,1);
         this._Color.Paint = Engineer.Color.Black;
@@ -44,7 +47,19 @@ class Monster
     {
         let Current = this._Color.Trans.Translation;
         let New = new Engineer.Vertex(Current.X, this._Lane * 315 + 210, 0);
+        this.CreateFade();
         this.Move(New);
+    }
+    private CreateFade() : void
+    {
+        for(let i = this._FadeEffects.length - 1; i >= 0; i--)
+        {
+            if(this._FadeEffects[i].Finished)
+            {
+                this._FadeEffects.splice(i, 1);
+            }
+        }
+        this._FadeEffects.push(new FadeEffect(this._Scene, this._Asset, this._Color));
     }
     private KeyDown(Game:Engineer.Game, Args:any) : void
     {
