@@ -28,7 +28,7 @@ class Score
     private GenerateTiles() : void
     {
             
-        for(let i = 0; i < 10; i++) this._DigitColl.Images.push("/Resources/Textures/Human/broj"+i+".png"); 
+        for(let i = 0; i < 10; i++) this._DigitColl.Images.push("Resources/Textures/Human/broj"+i+".png"); 
         
         for(let i = 0; i < 3; i++)
         {

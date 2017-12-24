@@ -55,9 +55,9 @@ class Body extends Engineer.Sprite
         this.Trans.Scale = new Engineer.Vertex(85,175,1);
         let SpriteSet = new Engineer.SpriteSet(null, "Body", []);
         SpriteSet.Seed = 10;        
-        SpriteSet.Sprites.push("/Resources/Textures/Human/human1.png");
-        SpriteSet.Sprites.push("/Resources/Textures/Human/human2.png");
-        SpriteSet.Sprites.push("/Resources/Textures/Human/human3.png");
+        SpriteSet.Sprites.push("Resources/Textures/Human/human1.png");
+        SpriteSet.Sprites.push("Resources/Textures/Human/human2.png");
+        SpriteSet.Sprites.push("Resources/Textures/Human/human3.png");
         this.SpriteSets.push(SpriteSet);
         GameScene.AddSceneObject(this);
     }
@@ -72,7 +72,7 @@ class Shirt extends Engineer.Sprite
         this.Paint = Color;
         let SpriteSet = new Engineer.SpriteSet(null, "Shirt", []);
         SpriteSet.Seed = 10;
-        SpriteSet.Sprites.push("/Resources/Textures/Human/shirt.png");
+        SpriteSet.Sprites.push("Resources/Textures/Human/shirt.png");
         this.SpriteSets.push(SpriteSet);
         GameScene.AddSceneObject(this);
     }
@@ -89,7 +89,7 @@ class Points extends Engineer.Sprite
         let SpriteSet = new Engineer.SpriteSet(null, "Points", []);
         SpriteSet.Seed = 10;
         this.PointsValue = PointsVal;
-        SpriteSet.Sprites.push("/Resources/Textures/Human/broj"+PointsVal+".png");
+        SpriteSet.Sprites.push("Resources/Textures/Human/broj"+PointsVal+".png");
         this.SpriteSets.push(SpriteSet);
         if(Color!=null)this.Paint = Color;
         GameScene.AddSceneObject(this);

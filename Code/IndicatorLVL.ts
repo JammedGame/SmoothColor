@@ -14,7 +14,7 @@ private _Num:Engineer.Tile = new Engineer.Tile();
     public constructor(GameScene:GameScene)
     {        
         this._GameScene = GameScene;
-        this._LvlColl.Images.push("/Resources/Textures/Human/lvl.png");
+        this._LvlColl.Images.push("Resources/Textures/Human/lvl.png");
         this._Lvl.Name = "Digit";
         this._Lvl.Collection = this._LvlColl;
         this._Lvl.Index = 0;
@@ -25,7 +25,7 @@ private _Num:Engineer.Tile = new Engineer.Tile();
 
         this._GameScene.AddSceneObject(this._Lvl);
 
-        for(let i = 0; i < 10; i++)this._NumColl.Images.push("/Resources/Textures/Human/broj"+i+".png");
+        for(let i = 0; i < 10; i++)this._NumColl.Images.push("Resources/Textures/Human/broj"+i+".png");
         this._Num.Name = "Num";
         this._Num.Collection = this._NumColl;
         this._Num.Index = 0;

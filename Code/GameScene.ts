@@ -130,7 +130,7 @@ class GameScene extends Engineer.Scene2D
     }
     private GenerateBackground() : void
     {
-        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["/Resources/Textures/back.png"]);
+        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["Resources/Textures/back.png"]);
         let Back:Engineer.Tile = new Engineer.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;

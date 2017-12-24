@@ -22,8 +22,8 @@ class LevelPicker extends Engineer.Scene2D
         this.Name = "LevelPicker";
         this.GenerateBackground();
         this._Numbers = new Engineer.TileCollection(null, []);
-        for(let i = 0; i < 10; i++) this._Numbers.Images.push("/Resources/Textures/Human/broj"+i+".png");
-        this._Numbers.Images.push("/Resources/Textures/Lock.png");
+        for(let i = 0; i < 10; i++) this._Numbers.Images.push("Resources/Textures/Human/broj"+i+".png");
+        this._Numbers.Images.push("Resources/Textures/Lock.png");
         this.LevelButton(new Engineer.Vertex(360,180,0), 1);
         this.LevelButton(new Engineer.Vertex(960,180,0), 2);
         this.LevelButton(new Engineer.Vertex(1560,180,0), 3);
@@ -66,7 +66,7 @@ class LevelPicker extends Engineer.Scene2D
     }
     private GenerateBackground() : void
     {
-        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["/Resources/Textures/lvlpickback.png"]);
+        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["Resources/Textures/lvlpickback.png"]);
         let Back:Engineer.Tile = new Engineer.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;

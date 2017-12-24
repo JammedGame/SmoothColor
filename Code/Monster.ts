@@ -92,19 +92,19 @@ class Monster
     {
         let SpriteSetSkin = new Engineer.SpriteSet(null, "Walk", []);
         SpriteSetSkin.Seed = 10;
-        for(let i = 1; i < 10; i++) SpriteSetSkin.Sprites.push("/Resources/Textures/Monster/hodanjekoza"+i+".png");
+        for(let i = 1; i < 10; i++) SpriteSetSkin.Sprites.push("Resources/Textures/Monster/hodanjekoza"+i+".png");
         this._Color.SpriteSets.push(SpriteSetSkin);
         let SpriteSetSkin2 = new Engineer.SpriteSet(null, "Eat", []);
         SpriteSetSkin2.Seed = 10;
-        for(let i = 1; i < 10; i++) SpriteSetSkin2.Sprites.push("/Resources/Textures/Monster/jedenjekoze"+i+".png");
+        for(let i = 1; i < 10; i++) SpriteSetSkin2.Sprites.push("Resources/Textures/Monster/jedenjekoze"+i+".png");
         this._Color.SpriteSets.push(SpriteSetSkin2);
         let SpriteSet = new Engineer.SpriteSet(null, "Walk", []);
         SpriteSet.Seed = 10;
-        for(let i = 1; i < 10; i++) SpriteSet.Sprites.push("/Resources/Textures/Monster/hodanje"+i+".png");
+        for(let i = 1; i < 10; i++) SpriteSet.Sprites.push("Resources/Textures/Monster/hodanje"+i+".png");
         this._Asset.SpriteSets.push(SpriteSet);
         let SpriteSet2 = new Engineer.SpriteSet(null, "Eat", []);
         SpriteSet2.Seed = 10;
-        for(let i = 1; i < 10; i++) SpriteSet2.Sprites.push("/Resources/Textures/Monster/jedenje"+i+".png");
+        for(let i = 1; i < 10; i++) SpriteSet2.Sprites.push("Resources/Textures/Monster/jedenje"+i+".png");
         this._Asset.SpriteSets.push(SpriteSet2);
     }
     public Eat() : void

@@ -19,13 +19,13 @@ class MainMenu extends Engineer.Scene2D
     {
         this.Name = "Menu";
         this.GenerateBackground();
-        let Buttons:any = new Engineer.TileCollection(null, ["/Resources/Textures/Play.png", "/Resources/Textures/Level.png"]);
+        let Buttons:any = new Engineer.TileCollection(null, ["Resources/Textures/Play.png", "Resources/Textures/Level.png"]);
         let Play:any = new Engineer.Tile();
         Play.Name = "Play";
         Play.Collection = Buttons;
         Play.Index = 0;
         Play.Trans.Scale = new Engineer.Vertex(300, 200, 1);
-        Play.Trans.Translation = new Engineer.Vertex(200, 200, 0);
+        Play.Trans.Translation = new Engineer.Vertex(300, 550, 0);
         Play.Events.MouseDown.push(this.PlayClick.bind(this));
         this.AddSceneObject(Play);
         let Level:any = new Engineer.Tile();
@@ -33,7 +33,7 @@ class MainMenu extends Engineer.Scene2D
         Level.Collection = Buttons;
         Level.Index = 1;
         Level.Trans.Scale = new Engineer.Vertex(300, 200, 1);
-        Level.Trans.Translation = new Engineer.Vertex(200, 450, 0);
+        Level.Trans.Translation = new Engineer.Vertex(1600, 550, 0);
         Level.Events.MouseDown.push(this.LevelClick.bind(this));
         this.AddSceneObject(Level);
         this._Game.AddScene(this);
@@ -51,7 +51,7 @@ class MainMenu extends Engineer.Scene2D
     }
     private GenerateBackground() : void
     {
-        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["/Resources/Textures/cover.png"]);
+        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["Resources/Textures/cover.png"]);
         let Back:Engineer.Tile = new Engineer.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;
