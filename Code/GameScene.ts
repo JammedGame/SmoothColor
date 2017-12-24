@@ -49,22 +49,35 @@ class GameScene extends Engineer.Scene2D
         let Data = JSON.parse(DataString);
         if(Data.Type == "Scene") this.Deserialize(Data.Data);
     }
+    private StartLevel() : void
+    {
+        this._BackIndex = 1;
+        this._BackLastSwap = 0;
+        this._Back1.Trans.Translation = new Engineer.Vertex(960, 540, 0);
+        this._Back2.Trans.Translation = new Engineer.Vertex(2880, 540, 0);
+        this._Monster.Reset();
+        this.Trans.Translation = new Engineer.Vertex(0,0,0);
+        this._HumanGen.Init(Levels[this._LevelIndex]);
+        this._UIManager.Hide();
+        this._ResultsShow = false;
+    }
     private KeyPress(G: any, Args: any): void
     {
+        if(Args.KeyCode == 32)
+        {
+            //this._Pause = !this._Pause;
+        }
         if(this._Pause) return;
         if(this._HumanGen.Finished && Args.KeyCode == 13)
         {
-            this._BackIndex = 1;
-            this._BackLastSwap = 0;
-            this._Back1.Trans.Translation = new Engineer.Vertex(960, 540, 0);
-            this._Back2.Trans.Translation = new Engineer.Vertex(2880, 540, 0);
-            this._Monster.Reset();
-            this.Trans.Translation = new Engineer.Vertex(0,0,0);
-            this._HumanGen.Init(Levels[this._LevelIndex]);
-            this._UIManager.Hide();
-            this._ResultsShow = false;
+            if(this._Score.TotalScore > Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
+            if(this._LevelIndex > 1) this._LevelIndex = 0;
+            this.StartLevel();
         }
-        // Key Code here
+        else if(Args.KeyCode == 82)
+        {
+            this.StartLevel();
+        }
     }
     private SceneUpdate() : void
     {
@@ -74,8 +87,6 @@ class GameScene extends Engineer.Scene2D
             if(this._ResultsShow) return;
             this._UIManager.Show(Levels[this._LevelIndex], this._Score.TotalScore);
             this._ResultsShow = true;
-            if(this._Score.TotalScore > Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
-            if(this._LevelIndex > 1) this._LevelIndex = 0;
             return;
         }
         this.MoveScene();
