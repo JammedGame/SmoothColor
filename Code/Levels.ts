@@ -50,7 +50,7 @@ let Levels =
     },
     // Level 5
     {
-        Level: 3,
+        Level: 5,
         BasicOnly: false,
         LowChannel: true,
         LowHighMixes: false,

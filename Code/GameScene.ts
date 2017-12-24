@@ -23,17 +23,18 @@ class GameScene extends Engineer.Scene2D
     private _UIManager:UIManager;
     public get Pause():boolean { return this._Pause; }
     public set Pause(value:boolean) { this._Pause = value; }
-    public constructor()
+    public constructor(Level?:number)
     {
         super();
         this.Name = "Game";
-        this.Init();
+        this.Init(Level);
         this.Events.KeyDown.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
-    public Init(): void
+    public Init(Level?:number): void
     {
-        this._LevelIndex = 0;
+        if(!Level) this._LevelIndex = 0;
+        else this._LevelIndex = Level;
         this._BackIndex = 1;
         this._BackLastSwap = 0;
         this._ResultsShow = false;
@@ -42,7 +43,7 @@ class GameScene extends Engineer.Scene2D
         this.GenerateBackground()
         this._Monster = new Monster(this);
         this._Score = new Score(this);
-        this._HumanGen = new HumanGen(this, Levels[0], this._Score);
+        this._HumanGen = new HumanGen(this, Levels[this._LevelIndex], this._Score);
         this._UIManager.Hint(Levels[this._LevelIndex]);
     }
     public SceneLoaded(DataString)
@@ -72,8 +73,8 @@ class GameScene extends Engineer.Scene2D
         if(this._Pause) return;
         if(this._HumanGen.Finished && Args.KeyCode == 13)
         {
-            if(this._Score.TotalScore > Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
-            if(this._LevelIndex > 1) this._LevelIndex = 0;
+            if(this._Score.TotalScore >= Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
+            if(this._LevelIndex > 8) this._LevelIndex = 0;
             this.StartLevel();
         }
         else if(Args.KeyCode == 82)

@@ -26,19 +26,19 @@ class UIManager
             this._LevelFailed.style.display = "block";
             this._ScoreFailed.innerHTML = TotalScore + " / " + Level.BronzeScore;
         }
-        else if(TotalScore > Level.GoldScore)
+        else if(TotalScore >= Level.GoldScore)
         {
             this._LevelSuccess.style.display = "block";
             this._Medal.innerHTML = "You earned GOLD medal!";
             this._ScoreSuccess.innerHTML = TotalScore + " / " + Level.GoldScore;
         }
-        else if(TotalScore > Level.SilverScore)
+        else if(TotalScore >=Level.SilverScore)
         {
             this._LevelSuccess.style.display = "block";
             this._Medal.innerHTML = "You earned SILVER medal!";
             this._ScoreSuccess.innerHTML = TotalScore + " / " + Level.SilverScore;
         }
-        else if(TotalScore > Level.BronzeScore)
+        else if(TotalScore >= Level.BronzeScore)
         {
             this._LevelSuccess.style.display = "block";
             this._Medal.innerHTML = "You earned BRONZE medal!";
