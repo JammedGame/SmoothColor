@@ -22,7 +22,15 @@ class LevelPicker extends Engineer.Scene2D
         this.GenerateBackground();
         this._Numbers = new Engineer.TileCollection(null, []);
         for(let i = 0; i < 10; i++) this._Numbers.Images.push("/Resources/Textures/Human/broj"+i+".png");
-        this.LevelButton(new Engineer.Vertex(300,300,0), 5);
+        this.LevelButton(new Engineer.Vertex(360,180,0), 1);
+        this.LevelButton(new Engineer.Vertex(960,180,0), 2);
+        this.LevelButton(new Engineer.Vertex(1560,180,0), 3);
+        this.LevelButton(new Engineer.Vertex(360,500,0), 4);
+        this.LevelButton(new Engineer.Vertex(960,500,0), 5);
+        this.LevelButton(new Engineer.Vertex(1560,500,0), 6);
+        this.LevelButton(new Engineer.Vertex(360,820,0), 7);
+        this.LevelButton(new Engineer.Vertex(960,820,0), 8);
+        this.LevelButton(new Engineer.Vertex(1560,820,0), 9);
         this._Game.AddScene(this);
     }
     private LevelButton(Location:Engineer.Vertex, Number:number) : void
@@ -30,12 +38,18 @@ class LevelPicker extends Engineer.Scene2D
         let LevelPickButton:any = new Engineer.Tile();
         LevelPickButton.Name = "Level"+Number;
         LevelPickButton.Data["Level"] = Number - 1;
-        LevelPickButton.Collection = this._Numbers;
-        LevelPickButton.Index = Number;
-        LevelPickButton.Trans.Scale = new Engineer.Vertex(200, 300, 1);
+        LevelPickButton.Paint = Engineer.Color.FromRGBA(100,100,100,100);
+        LevelPickButton.Trans.Scale = new Engineer.Vertex(300, 150, 1);
         LevelPickButton.Trans.Translation = Location;
         LevelPickButton.Events.MouseDown.push(this.LevelPickButtonClick.bind(this));
+        let LevelPickNumber:any = new Engineer.Tile();
+        LevelPickNumber.Name = "LevelNumber"+Number;
+        LevelPickNumber.Collection = this._Numbers;
+        LevelPickNumber.Index = Number;
+        LevelPickNumber.Trans.Scale = new Engineer.Vertex(100, 150, 1);
+        LevelPickNumber.Trans.Translation = Location;
         this.AddSceneObject(LevelPickButton);
+        this.AddSceneObject(LevelPickNumber);
     }
     public LevelPickButtonClick(G:any, Args:any) : void
     {
