@@ -26,10 +26,16 @@ class HumanGen
     public constructor(GameScene:GameScene, Level:any, Score:Score)
     {
         this._GameScene = GameScene;
+        this._Score = Score;
+        this.Init(Level);
+    }
+    public Init(Level:any) : void
+    {
         this._Humans = [];
         this._Level = Level;
+        this._Score.Reset();
+        this._TotalDistance = 300;
         this._ColorGen = new HumanColorGen(this._Level);
-        this._Score = Score;
         for(let i=0;i<this._Level.Humans;i++)
         {
             this.generateParameters(0);

@@ -36,8 +36,9 @@ class FadeEffect
             this.FinishEffect();
         }
     }
-    private FinishEffect() : void
+    public FinishEffect() : void
     {
+        if(this._Finished) return;
         this._Scene.Events.TimeTick.splice(this._Scene.Events.TimeTick.indexOf(this.UpdateEffect), 1);
         this._Scene.RemoveSceneObject(this._Asset);
         this._Scene.RemoveSceneObject(this._Color);

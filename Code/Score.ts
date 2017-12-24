@@ -11,10 +11,19 @@ class Score
     
     public constructor(GameScene:GameScene)
     {       
-        this._TotalScore = 95;
+        this._TotalScore = 0;
         this._GameScene = GameScene;
         this.GenerateTiles();
-             
+    
+    }
+    public Reset() : void
+    {
+        this._TotalScore = 0;
+        for(let i=0;i<3;i++)
+        {
+            this._Digit[i].Index = 0;
+            this._Digit[i].Modified = true;
+        }
     }
     private GenerateTiles() : void
     {

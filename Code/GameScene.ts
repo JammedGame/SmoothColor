@@ -9,6 +9,7 @@ import { Levels } from "./Levels";
 
 class GameScene extends Engineer.Scene2D
 {
+    private _LevelIndex:number;
     private _BackIndex:number;
     private _BackLastSwap:number;
     private _Back1:Engineer.Tile;
@@ -28,6 +29,7 @@ class GameScene extends Engineer.Scene2D
     }
     public Init(): void
     {
+        this._LevelIndex = 0;
         this._BackIndex = 1;
         this._BackLastSwap = 0;
         this.BackColor = Engineer.Color.FromRGBA(255, 255, 255, 255);
@@ -49,9 +51,22 @@ class GameScene extends Engineer.Scene2D
     private SceneUpdate() : void
     {
         if(this._Pause) return;
-        if(this._HumanGen.Finished) return;
-        // Update Code here
+        if(this._HumanGen.Finished)
+        {
+            console.log("!");
+            this._LevelIndex++;
+            if(this._LevelIndex > 1) this._LevelIndex = 0;
+            this._BackIndex = 1;
+            this._BackLastSwap = 0;
+            this._Back1.Trans.Translation = new Engineer.Vertex(960, 540, 0);
+            this._Back2.Trans.Translation = new Engineer.Vertex(2880, 540, 0);
+            this._Monster.Reset();
+            this.Trans.Translation = new Engineer.Vertex(0,0,0);
+            this._HumanGen.Init(Levels[this._LevelIndex]);
+            return;
+        }
         this.MoveScene();
+        // Update Code here
     }
     private MoveScene():void
     {

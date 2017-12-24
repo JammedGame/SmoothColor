@@ -43,6 +43,14 @@ class Monster
         this._Color.Trans.Translation = Position;
         this._Asset.Trans.Translation = Position;
     }
+    public Reset() : void
+    {
+        for(let i in this._FadeEffects)
+        {
+            this._FadeEffects[i].FinishEffect();
+        }
+        this._FadeEffects = [];
+    }
     public MoveToLane() : void
     {
         let Current = this._Color.Trans.Translation;

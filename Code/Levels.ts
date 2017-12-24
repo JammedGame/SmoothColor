@@ -4,6 +4,7 @@ let Levels =
 [ 
     // Level 1
     {
+        Level: 1,
         BasicOnly: true,
         LowChannel: false,
         LowHighMixes: false,
@@ -14,6 +15,7 @@ let Levels =
     },
     // Level 2
     {
+        Level: 2,
         BasicOnly: false,
         LowChannel: false,
         LowHighMixes: false,
