@@ -80,6 +80,7 @@ class GameScene extends Engineer.Scene2D
         {
             if(this._Score.TotalScore >= Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
             if(this._LevelIndex > 8) this._LevelIndex = 0;
+            Levels[this._LevelIndex].Unlocked = true;
             this.StartLevel();
         }
         else if(Args.KeyCode == 82)
@@ -94,11 +95,17 @@ class GameScene extends Engineer.Scene2D
         {
             if(this._ResultsShow) return;
             this._UIManager.Show(Levels[this._LevelIndex], this._Score.TotalScore);
+            if(Levels[this._LevelIndex].Score < this._Score.TotalScore) Levels[this._LevelIndex].Score = this._Score.TotalScore;
+            if(this._LevelIndex < 8 && Levels[this._LevelIndex].BronzeScore < this._Score.TotalScore) Levels[this._LevelIndex+1].Unlocked = true;
+            this.SaveData();
             this._ResultsShow = true;
             return;
         }
         this.MoveScene();
-        // Update Code here
+    }
+    private SaveData() : void
+    {
+        localStorage.setItem("Level_Data", JSON.stringify(Levels));
     }
     private MoveScene():void
     {
