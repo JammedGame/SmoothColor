@@ -24,6 +24,9 @@ class LevelPicker extends Engineer.Scene2D
         this._Numbers = new Engineer.TileCollection(null, []);
         for(let i = 0; i < 10; i++) this._Numbers.Images.push("Resources/Textures/Human/broj"+i+".png");
         this._Numbers.Images.push("Resources/Textures/Lock.png");
+        this._Numbers.Images.push("Resources/Textures/MedallionGold.png");
+        this._Numbers.Images.push("Resources/Textures/MedallionSilver.png");
+        this._Numbers.Images.push("Resources/Textures/MedallionBronze.png");
         this.LevelButton(new Engineer.Vertex(360,180,0), 1);
         this.LevelButton(new Engineer.Vertex(960,180,0), 2);
         this.LevelButton(new Engineer.Vertex(1560,180,0), 3);
@@ -55,6 +58,18 @@ class LevelPicker extends Engineer.Scene2D
         LevelPickNumber.Trans.Translation = Location;
         this.AddSceneObject(LevelPickButton);
         this.AddSceneObject(LevelPickNumber);
+        if(Levels[Number - 1].Score > Levels[Number - 1].BronzeScore)
+        {
+            let Medal:any = new Engineer.Tile();
+            Medal.Name = "Medal"+Number;
+            Medal.Collection = this._Numbers;
+            Medal.Index = 13;
+            if(Levels[Number - 1].Score > Levels[Number - 1].GoldScore) Medal.Index = 11;
+            else if(Levels[Number - 1].Score > Levels[Number - 1].SilverScore) Medal.Index = 12;
+            Medal.Trans.Scale = new Engineer.Vertex(120, 120, 1);
+            Medal.Trans.Translation = new Engineer.Vertex(Location.X - 140, Location.Y - 65, 0);
+            this.AddSceneObject(Medal);
+        }
     }
     public LevelPickButtonClick(G:any, Args:any) : void
     {
