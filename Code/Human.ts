@@ -21,13 +21,15 @@ class Human
 
     public constructor(Lane:number, Color:Engineer.Color, PointsVal:number, PosX:number, GameScene:GameScene, Score:Score)
     {   
+        let Black
         this._Lane = Lane;
         this._PosX = PosX;
         this._Color = Color;
         this._Score = Score;
-        this._Body = new Body(Lane,Color, PosX, GameScene);
+        this._Body = new Body(Lane, Color, PosX, GameScene);
         this._Shirt = new Shirt(Lane, Color, PosX, GameScene);
-        this._Points = new Points(Lane, PointsVal, PosX, GameScene);
+        if(this._Color.R == 255 && this._Color.G == 255 && this._Color.B == 255)this._Points = new Points(Lane, PointsVal, PosX, GameScene, Engineer.Color.Black);
+        else this._Points = new Points(Lane, PointsVal, PosX, GameScene);
     }
     public Eat() : void
     {
@@ -79,16 +81,17 @@ class Points extends Engineer.Sprite
 {    
     private PointsValue:number;
     public get Points():number { return this.PointsValue; }
-    public constructor(Lane:number, PointsVal:number, PosX:number, GameScene:GameScene)
+    public constructor(Lane:number, PointsVal:number, PosX:number, GameScene:GameScene, Color?:Engineer.Color,)
     {   
         super();
-        this.Trans.Translation = new Engineer.Vertex(PosX, 150 + Lane * 315, 1);
+        this.Trans.Translation = new Engineer.Vertex(PosX, 232 + Lane * 315, 4);
         this.Trans.Scale = new Engineer.Vertex(35, 35, 1);
         let SpriteSet = new Engineer.SpriteSet(null, "Points", []);
         SpriteSet.Seed = 10;
         this.PointsValue = PointsVal;
         SpriteSet.Sprites.push("/Resources/Textures/Human/broj"+PointsVal+".png");
         this.SpriteSets.push(SpriteSet);
+        if(Color!=null)this.Paint = Color;
         GameScene.AddSceneObject(this);
     }
 }
