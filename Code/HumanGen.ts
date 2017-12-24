@@ -31,6 +31,10 @@ class HumanGen
     }
     public Init(Level:any) : void
     {
+        if(this._Humans)
+        {
+            for(let i in this._Humans) this._Humans[i].Destroy();
+        }
         this._Humans = [];
         this._Level = Level;
         this._Score.Reset();

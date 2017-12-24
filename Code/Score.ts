@@ -8,7 +8,7 @@ class Score
     private _GameScene:Engineer.Scene2D;
     private _DigitColl:Engineer.TileCollection = new Engineer.TileCollection(null, []);
     private _Digit:Engineer.Tile[] = [new Engineer.Tile(),new Engineer.Tile(),new Engineer.Tile()];    
-    
+    public get TotalScore():number { return this._TotalScore; }
     public constructor(GameScene:GameScene)
     {       
         this._TotalScore = 0;

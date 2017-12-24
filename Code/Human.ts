@@ -36,6 +36,12 @@ class Human
         this._Shirt.Active = false;
         this._Points.Active = false;
         this._Score.UpdateScore(this._Points.Points);
+    } 
+    public Destroy() : void
+    {
+        this._Body.Active = false;
+        this._Shirt.Active = false;
+        this._Points.Active = false;
     }  
 }
 class Body extends Engineer.Sprite

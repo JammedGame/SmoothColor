@@ -6,9 +6,11 @@ import { Monster } from "./Monster";
 import { HumanGen } from "./HumanGen";
 import { Score } from "./Score";
 import { Levels } from "./Levels";
+import { UIManager } from "./UIManager";
 
 class GameScene extends Engineer.Scene2D
 {
+    private _ResultsShow:boolean;
     private _LevelIndex:number;
     private _BackIndex:number;
     private _BackLastSwap:number;
@@ -18,6 +20,7 @@ class GameScene extends Engineer.Scene2D
     private _Monster:Monster;
     private _HumanGen:HumanGen;
     private _Score:Score;
+    private _UIManager:UIManager;
     public get Pause():boolean { return this._Pause; }
     public set Pause(value:boolean) { this._Pause = value; }
     public constructor()
@@ -25,6 +28,7 @@ class GameScene extends Engineer.Scene2D
         super();
         this.Name = "Game";
         this.Init();
+        this.Events.KeyDown.push(this.KeyPress.bind(this));
         this.Events.TimeTick.push(this.SceneUpdate.bind(this));
     }
     public Init(): void
@@ -32,6 +36,8 @@ class GameScene extends Engineer.Scene2D
         this._LevelIndex = 0;
         this._BackIndex = 1;
         this._BackLastSwap = 0;
+        this._ResultsShow = false;
+        this._UIManager = new UIManager();
         this.BackColor = Engineer.Color.FromRGBA(255, 255, 255, 255);
         this.GenerateBackground()
         this._Monster = new Monster(this);
@@ -46,16 +52,8 @@ class GameScene extends Engineer.Scene2D
     private KeyPress(G: any, Args: any): void
     {
         if(this._Pause) return;
-        // Key Code here
-    }
-    private SceneUpdate() : void
-    {
-        if(this._Pause) return;
-        if(this._HumanGen.Finished)
+        if(this._HumanGen.Finished && Args.KeyCode == 13)
         {
-            console.log("!");
-            this._LevelIndex++;
-            if(this._LevelIndex > 1) this._LevelIndex = 0;
             this._BackIndex = 1;
             this._BackLastSwap = 0;
             this._Back1.Trans.Translation = new Engineer.Vertex(960, 540, 0);
@@ -63,6 +61,21 @@ class GameScene extends Engineer.Scene2D
             this._Monster.Reset();
             this.Trans.Translation = new Engineer.Vertex(0,0,0);
             this._HumanGen.Init(Levels[this._LevelIndex]);
+            this._UIManager.Hide();
+            this._ResultsShow = false;
+        }
+        // Key Code here
+    }
+    private SceneUpdate() : void
+    {
+        if(this._Pause) return;
+        if(this._HumanGen.Finished)
+        {
+            if(this._ResultsShow) return;
+            this._UIManager.Show(Levels[this._LevelIndex], this._Score.TotalScore);
+            this._ResultsShow = true;
+            if(this._Score.TotalScore > Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
+            if(this._LevelIndex > 1) this._LevelIndex = 0;
             return;
         }
         this.MoveScene();
