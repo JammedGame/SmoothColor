@@ -6,6 +6,7 @@ import { Monster } from "./Monster";
 import { HumanGen } from "./HumanGen";
 import { Score } from "./Score";
 import { Levels } from "./Levels";
+import { IndicatorLVL } from "./IndicatorLVL";
 import { UIManager } from "./UIManager";
 
 class GameScene extends Engineer.Scene2D
@@ -20,6 +21,7 @@ class GameScene extends Engineer.Scene2D
     private _Monster:Monster;
     private _HumanGen:HumanGen;
     private _Score:Score;
+    private _IndicatorLVL:IndicatorLVL;
     private _UIManager:UIManager;
     public get Pause():boolean { return this._Pause; }
     public set Pause(value:boolean) { this._Pause = value; }
@@ -44,7 +46,9 @@ class GameScene extends Engineer.Scene2D
         this._Monster = new Monster(this);
         this._Score = new Score(this);
         this._HumanGen = new HumanGen(this, Levels[this._LevelIndex], this._Score);
-        this._UIManager.Hint(Levels[this._LevelIndex]);
+        this._IndicatorLVL = new IndicatorLVL(this);
+        this._UIManager.Hint(Levels[this._LevelIndex]);        
+        this._IndicatorLVL.UpdateLvl(this._LevelIndex+1);
     }
     public SceneLoaded(DataString)
     {
@@ -62,7 +66,8 @@ class GameScene extends Engineer.Scene2D
         this._HumanGen.Init(Levels[this._LevelIndex]);
         this._UIManager.Hide();
         this._UIManager.Hint(Levels[this._LevelIndex]);
-        this._ResultsShow = false;
+        this._ResultsShow = false;        
+        this._IndicatorLVL.UpdateLvl(this._LevelIndex+1);
     }
     private KeyPress(G: any, Args: any): void
     {
