@@ -19,7 +19,7 @@ class MainMenu extends Engineer.Scene2D
     {
         this.Name = "Menu";
         this.GenerateBackground();
-        let Buttons:any = new Engineer.TileCollection(null, ["/Resources/Textures/Play.png"]);
+        let Buttons:any = new Engineer.TileCollection(null, ["/Resources/Textures/Play.png", "/Resources/Textures/Level.png"]);
         let Play:any = new Engineer.Tile();
         Play.Name = "Play";
         Play.Collection = Buttons;
@@ -28,6 +28,14 @@ class MainMenu extends Engineer.Scene2D
         Play.Trans.Translation = new Engineer.Vertex(200, 200, 0);
         Play.Events.MouseDown.push(this.PlayClick.bind(this));
         this.AddSceneObject(Play);
+        let Level:any = new Engineer.Tile();
+        Level.Name = "Level";
+        Level.Collection = Buttons;
+        Level.Index = 1;
+        Level.Trans.Scale = new Engineer.Vertex(300, 200, 1);
+        Level.Trans.Translation = new Engineer.Vertex(200, 450, 0);
+        Level.Events.MouseDown.push(this.LevelClick.bind(this));
+        this.AddSceneObject(Level);
         this._Game.AddScene(this);
     }
     public PlayClick(G:any, Args:any) : void
@@ -36,6 +44,10 @@ class MainMenu extends Engineer.Scene2D
         this._Game.AddScene(Scene);
         this._Runner.SetResolution(new Engineer.Vertex(1920, 1080, 0), false);
         this._Runner.SwitchScene("Game", false);
+    }
+    public LevelClick(G:any, Args:any) : void
+    {
+        this._Runner.SwitchScene("LevelPicker", false);
     }
     private GenerateBackground() : void
     {
