@@ -6,6 +6,7 @@ import { Sprite, PointCloud } from "three";
 
 class Human
 {
+    private static Munch:Engineer.SoundObject;
     private _Lane:number;
     private _PosX:number;
     private _Color:Engineer.Color;
@@ -21,7 +22,7 @@ class Human
 
     public constructor(Lane:number, Color:Engineer.Color, PointsVal:number, PosX:number, GameScene:GameScene, Score:Score)
     {   
-        let Black
+        if(!Human.Munch) Human.Munch = new Engineer.SoundObject("Resources/Textures/Munch.wav");
         this._Lane = Lane;
         this._PosX = PosX;
         this._Color = Color;
@@ -38,6 +39,7 @@ class Human
         this._Shirt.Active = false;
         this._Points.Active = false;
         this._Score.UpdateScore(this._Points.Points);
+        Human.Munch.Play();
     } 
     public Destroy() : void
     {

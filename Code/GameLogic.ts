@@ -22,6 +22,9 @@ class GameLogic
         let _LevelPicker:any = new LevelPicker(this._Runner, this._Game);
         this._Game.AddScene(_Menu);
         this._Game.AddScene(_LevelPicker);
+        let Music = new Engineer.SoundObject("Resources/Textures/Music.mp3");
+        Music.Looped = true;
+        Music.Play();
     }
     public Run() : void
     {
