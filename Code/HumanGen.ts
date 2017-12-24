@@ -42,7 +42,7 @@ class HumanGen
         this._ColorGen = new HumanColorGen(this._Level);
         for(let i=0;i<this._Level.Humans;i++)
         {
-            this.generateParameters(0);
+            this.generateParameters(this._Level.Level);
         }
     }
     public generateParameters(difficulty:number)
