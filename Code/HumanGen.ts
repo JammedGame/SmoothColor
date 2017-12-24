@@ -60,7 +60,7 @@ class HumanGen
         for(let i in this._Humans)
         {
             if(this._Humans[i].Eaten) continue;
-            if(Math.abs(PosX - this._Humans[i].PosX) < 100 && Lane == this._Humans[i].Lane
+            if(Math.abs(PosX - this._Humans[i].PosX) < 50 && Lane == this._Humans[i].Lane
             && this.ColorsEqual(Color, this._Humans[i].Color))
             {
                 this._Humans[i].Eat();
