@@ -14,7 +14,7 @@ let Levels =
         BronzeScore: 3,
         SilverScore: 5,
         GoldScore: 8,
-        Hint: "Use [Q,W,E] to activate channels. [Q] for Red, [W] for Green, [E] for Blue."
+        Hint: "Use [Q,W,E] to activate channels. [Q] for Red, [W] for Green, [E] for Blue. Use up and down arrows to move to different lane."
     },
     // Level 2
     {
