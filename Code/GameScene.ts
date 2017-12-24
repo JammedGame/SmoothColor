@@ -43,6 +43,7 @@ class GameScene extends Engineer.Scene2D
         this._Monster = new Monster(this);
         this._Score = new Score(this);
         this._HumanGen = new HumanGen(this, Levels[0], this._Score);
+        this._UIManager.Hint(Levels[this._LevelIndex]);
     }
     public SceneLoaded(DataString)
     {
@@ -59,6 +60,7 @@ class GameScene extends Engineer.Scene2D
         this.Trans.Translation = new Engineer.Vertex(0,0,0);
         this._HumanGen.Init(Levels[this._LevelIndex]);
         this._UIManager.Hide();
+        this._UIManager.Hint(Levels[this._LevelIndex]);
         this._ResultsShow = false;
     }
     private KeyPress(G: any, Args: any): void

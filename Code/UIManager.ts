@@ -7,6 +7,8 @@ class UIManager
     private _Medal:HTMLElement;
     private _ScoreSuccess:HTMLElement;
     private _ScoreFailed:HTMLElement;
+    private _HintPanel:HTMLElement;
+    private _HintText:HTMLElement;
     public constructor()
     {
         this._LevelSuccess = document.getElementById("level-complete");
@@ -14,6 +16,8 @@ class UIManager
         this._ScoreSuccess = document.getElementById("success-score");
         this._ScoreFailed = document.getElementById("fail-score");
         this._Medal = document.getElementById("medal");
+        this._HintPanel = document.getElementById("hint-panel");
+        this._HintText = document.getElementById("hint");
     }
     public Show(Level:any, TotalScore:number) : void
     {
@@ -45,5 +49,16 @@ class UIManager
     {
         this._LevelSuccess.style.display = "none";
         this._LevelFailed.style.display = "none";
+    }
+    public Hint(Level:any) : void
+    {
+        console.log(Level);
+        if(Level.Hint)
+        {
+            console.log(Level.Hint);
+            this._HintPanel.style.display = "block";
+            this._HintText.innerHTML = Level.Hint;
+        }
+        else this._HintPanel.style.display = "none";
     }
 }

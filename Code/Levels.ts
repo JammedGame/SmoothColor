@@ -11,7 +11,8 @@ let Levels =
         Humans: 5,
         BronzeScore: 3,
         SilverScore: 5,
-        GoldScore: 10
+        GoldScore: 10,
+        Hint: "Use [Q,W,E] to activate channels. [Q] for Red, [W] for Green, [E] for Blue"
     },
     // Level 2
     {
