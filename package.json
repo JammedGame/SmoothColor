@@ -15,12 +15,12 @@
   "author": "HHD",
   "license": "MIT",
   "devDependencies": {
-    "typescript": "^2.4.2",
-    "webpack": "^3.5.3",
+    "typescript": "2.9.2",
+    "webpack": "3.5.3",
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
     "engineer-js": "0.0.43",
-    "ts-loader": "^2.3.2"
+    "ts-loader": "^5.3.3"
   }
 }
