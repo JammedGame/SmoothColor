@@ -51,6 +51,10 @@ class Monster
         }
         this._FadeEffects = [];
     }
+    public Update() : void
+    {
+        this._FadeEffects.forEach(Effect => Effect.UpdateEffect());
+    }
     public MoveToLane() : void
     {
         let Current = this._Color.Trans.Translation;
@@ -90,7 +94,7 @@ class Monster
     }
     private LoadSets() : void
     {
-        let Seed: number = 5;
+        let Seed: number = 3;
         let SpriteSetSkin = new TBX.SpriteSet(null, [], "Walk");
         SpriteSetSkin.Seed = Seed;
         for(let i = 1; i < 10; i++) SpriteSetSkin.Images.push("Resources/Textures/Monster/hodanjekoza"+i+".png");

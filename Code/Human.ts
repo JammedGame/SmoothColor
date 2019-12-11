@@ -56,7 +56,7 @@ class Body extends TBX.Sprite
         this.Trans.Translation = new TBX.Vertex(PosX, 250 + Lane * 315, 2);
         this.Trans.Scale = new TBX.Vertex(85,175,1);
         let SpriteSet = new TBX.SpriteSet(null, [], "Body");
-        SpriteSet.Seed = 5;        
+        SpriteSet.Seed = 3;        
         SpriteSet.Images.push("Resources/Textures/Human/human1.png");
         SpriteSet.Images.push("Resources/Textures/Human/human2.png");
         SpriteSet.Images.push("Resources/Textures/Human/human3.png");
@@ -73,7 +73,7 @@ class Shirt extends TBX.Sprite
         this.Trans.Scale = new TBX.Vertex(85, 175, 1);
         this.Paint = Color;
         let SpriteSet = new TBX.SpriteSet(null, [], "Shirt");
-        SpriteSet.Seed = 5;
+        SpriteSet.Seed = 3;
         SpriteSet.Images.push("Resources/Textures/Human/shirt.png");
         this.SpriteSets.push(SpriteSet);
         GameScene.Attach(this);
@@ -89,7 +89,7 @@ class Points extends TBX.Sprite
         this.Trans.Translation = new TBX.Vertex(PosX, 232 + Lane * 315, 4);
         this.Trans.Scale = new TBX.Vertex(35, 35, 1);
         let SpriteSet = new TBX.SpriteSet(null, [], "Points");
-        SpriteSet.Seed = 5;
+        SpriteSet.Seed = 3;
         this.PointsValue = PointsVal;
         SpriteSet.Images.push("Resources/Textures/Human/broj"+PointsVal+".png");
         this.SpriteSets.push(SpriteSet);

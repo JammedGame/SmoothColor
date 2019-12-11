@@ -2,23 +2,23 @@
 <head>
     <title id="title">SmoothColor</title>
 </head>
-<body style="margin:0px; padding:0px; overflow:hidden; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+<body style="color: white; margin:0px; padding:0px; overflow:hidden; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
     <div id="canvas-parent" style="margin:0px; padding:0px; width:100%; height:100vh;">
         <canvas id="canvas"></canvas>
     </div>
-    <div id="level-complete" style="position:absolute; display:none; top:35%; left:35%; text-align:center; background-color:white; border: 5px solid black; width:30%; height:200px; z-index:10;">
+    <div id="level-complete" style="position:absolute; display:none; top:35%; left:35%; text-align:center; background-color: #111; border: 2px solid white; border-radius: 8px; width:30%; height:200px; z-index:10;">
         <p style="font-size:24px;">LEVEL COMPLETE!</p>
         <p id="medal" style="font-size:18px;">You earned GOLD medal!</p>
         <p id="success-score" style="font-size:18px;">0 / 0</p>
         <p style="font-size:18px;">Press [ENTER] to continue, [R] to retry.</p>
     </div>
-    <div id="level-failed" style="position:absolute; display:none; top:35%; left:35%; text-align:center; background-color:white; border: 5px solid black; width:30%; height:200px; z-index:10;">
+    <div id="level-failed" style="position:absolute; display:none; top:35%; left:35%; text-align:center; background-color: #111; border: 2px solid white; border-radius: 8px; width:30%; height:200px; z-index:10;">
         <p style="font-size:20px;">LEVEL FAILED</p>
         <p style="font-size:20px;">You have to eat more.</p>
         <p id="fail-score" style="font-size:18px;">0 / 0</p>
         <p style="font-size:18px;">Press [ENTER] to try again.</p>
     </div>
-    <div id="hint-panel" style="position:absolute; display:none; bottom:15px; right:30px; text-align:center; background-color:white; border: 5px solid black; height:auto; z-index:10; padding-left:30px; padding-right:30px;">
+    <div id="hint-panel" style="position:absolute; display:none; bottom:15px; right:30px; text-align:center; background-color: #111; border: 2px solid white; border-radius: 8px; height:auto; z-index:10; padding-left:30px; padding-right:30px;">
         <p id="hint" style="font-size:12px;">Hint Text</p>
     </div>
     <script style="margin:0px; padding:0px;" src="./build/smoothcolor.js"></script>

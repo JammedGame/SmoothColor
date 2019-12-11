@@ -4,11 +4,13 @@ import * as TBX from 'toybox-engine';
 
 class ColorMixer
 {
-    private _Scene:TBX.Scene;
-    private _Sprite:TBX.Sprite;
-    private _KeysDown:any;
+    private _Modified: boolean;
+    private _Scene: TBX.Scene;
+    private _Sprite: TBX.Sprite;
+    private _KeysDown: any;
     public constructor(Scene:TBX.Scene2D, Sprite:TBX.Sprite)
     {
+        this._Modified = false;
         this._Scene = Scene;
         this._Sprite = Sprite;
         this.Init();
@@ -22,24 +24,73 @@ class ColorMixer
     }
     private KeyDown(Game:TBX.Game, Args:any) : void
     {
-        if(Args.KeyCode == 81) this._KeysDown.Q = true;
-        else if(Args.KeyCode == 87) this._KeysDown.W = true;
-        else if(Args.KeyCode == 69) this._KeysDown.E = true;
-        else if(Args.KeyCode == 65) this._KeysDown.A = true;
-        else if(Args.KeyCode == 83) this._KeysDown.S = true;
-        else if(Args.KeyCode == 68) this._KeysDown.D = true;
+        if(Args.KeyCode == 81)
+        {
+            if(!this._KeysDown.Q) this._Modified = true;
+            this._KeysDown.Q = true;
+        }
+        else if(Args.KeyCode == 87)
+        {
+            if(!this._KeysDown.W) this._Modified = true;
+            this._KeysDown.W = true;
+        }
+        else if(Args.KeyCode == 69)
+        {
+            if(!this._KeysDown.E) this._Modified = true;
+            this._KeysDown.E = true;
+        }
+        else if(Args.KeyCode == 65)
+        {
+            if(!this._KeysDown.A) this._Modified = true;
+            this._KeysDown.A = true;
+        }
+        else if(Args.KeyCode == 83)
+        {
+            if(!this._KeysDown.S) this._Modified = true;
+            this._KeysDown.S = true;
+        }
+        else if(Args.KeyCode == 68)
+        {
+            if(!this._KeysDown.D) this._Modified = true;
+            this._KeysDown.D = true;
+        }
     }
     private KeyUp(Game:TBX.Game, Args:any) : void
     {
-        if(Args.KeyCode == 81) this._KeysDown.Q = false;
-        else if(Args.KeyCode == 87) this._KeysDown.W = false;
-        else if(Args.KeyCode == 69) this._KeysDown.E = false;
-        else if(Args.KeyCode == 65) this._KeysDown.A = false;
-        else if(Args.KeyCode == 83) this._KeysDown.S = false;
-        else if(Args.KeyCode == 68) this._KeysDown.D = false;
+        if(Args.KeyCode == 81)
+        {
+            if(this._KeysDown.Q) this._Modified = true;
+            this._KeysDown.Q = false;
+        }
+        else if(Args.KeyCode == 87)
+        {
+            if(this._KeysDown.W) this._Modified = true;
+            this._KeysDown.W = false;
+        }
+        else if(Args.KeyCode == 69)
+        {
+            if(this._KeysDown.E) this._Modified = true;
+            this._KeysDown.E = false;
+        }
+        else if(Args.KeyCode == 65)
+        {
+            if(this._KeysDown.A) this._Modified = true;
+            this._KeysDown.A = false;
+        }
+        else if(Args.KeyCode == 83)
+        {
+            if(this._KeysDown.S) this._Modified = true;
+            this._KeysDown.S = false;
+        }
+        else if(Args.KeyCode == 68)
+        {
+            if(this._KeysDown.D) this._Modified = true;
+            this._KeysDown.D = false;
+        }
     }
     private Update() : void
     {
+        if(!this._Modified) return;
         let Color = TBX.Color.Black;
         if(this._KeysDown.Q) Color.R = 255;
         else if(this._KeysDown.A) Color.R = 128;
@@ -52,5 +103,6 @@ class ColorMixer
         else Color.B = 0;
         this._Sprite.Paint = Color;
         this._Sprite.Modified = true;
+        this._Modified = false;
     }
 }

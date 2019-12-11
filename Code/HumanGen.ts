@@ -55,7 +55,7 @@ class HumanGen
     }
     public TryEatHumans(PosX:number, Lane:number, Color:TBX.Color) : boolean
     {
-        let Eat = false;
+        let Eat: boolean = false;
         for(let i in this._Humans)
         {
             if(this._Humans[i].Eaten) continue;

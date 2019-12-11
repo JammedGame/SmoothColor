@@ -86,7 +86,7 @@ class LevelPicker extends TBX.Scene2D
         Back.Name = "Back";
         Back.Collection = Backs;
         Back.Index = 0;
-        Back.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
+        Back.Trans.Scale = new TBX.Vertex(1920, 1082, 1);
         Back.Trans.Translation = new TBX.Vertex(960, 540, 0);
         this.Attach(Back);
     }

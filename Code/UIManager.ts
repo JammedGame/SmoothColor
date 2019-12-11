@@ -52,10 +52,8 @@ class UIManager
     }
     public Hint(Level:any) : void
     {
-        console.log(Level);
         if(Level.Hint)
         {
-            console.log(Level.Hint);
             this._HintPanel.style.display = "block";
             this._HintText.innerHTML = Level.Hint;
         }

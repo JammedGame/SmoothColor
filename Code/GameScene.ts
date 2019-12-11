@@ -37,6 +37,7 @@ class GameScene extends TBX.Scene2D
     {
         if(!Level) this._LevelIndex = 0;
         else this._LevelIndex = Level;
+        this._Pause = false;
         this._BackIndex = 1;
         this._BackLastSwap = 0;
         this._ResultsShow = false;
@@ -57,26 +58,24 @@ class GameScene extends TBX.Scene2D
     }
     private StartLevel() : void
     {
+        this._Pause = true;
         this._BackIndex = 1;
         this._BackLastSwap = 0;
+        this._ResultsShow = false;
         this._Back1.Trans.Translation = new TBX.Vertex(960, 540, 0);
         this._Back2.Trans.Translation = new TBX.Vertex(2880, 540, 0);
         this._Monster.Reset();
-        this.Trans.Translation = new TBX.Vertex(0,0,0);
         this._HumanGen.Init(Levels[this._LevelIndex]);
         this._UIManager.Hide();
         this._UIManager.Hint(Levels[this._LevelIndex]);
-        this._ResultsShow = false;        
         this._IndicatorLVL.UpdateLvl(this._LevelIndex+1);
+        this.Trans.Translation = new TBX.Vertex(0,0,0);
+        this._Pause = false;
     }
-    private KeyPress(G: any, Args: any): void
+    private KeyPress(G: any, Args: any) : void
     {
-        if(Args.KeyCode == 32)
-        {
-            //this._Pause = !this._Pause;
-        }
         if(this._Pause) return;
-        if(this._HumanGen.Finished && Args.KeyCode == 13)
+        if(this._HumanGen.Finished && Args.KeyCode == 13 && this._ResultsShow)
         {
             if(this._Score.TotalScore >= Levels[this._LevelIndex].BronzeScore) this._LevelIndex++;
             if(this._LevelIndex > 8) this._LevelIndex = 0;
@@ -94,22 +93,24 @@ class GameScene extends TBX.Scene2D
         if(this._HumanGen.Finished)
         {
             if(this._ResultsShow) return;
-            this._UIManager.Show(Levels[this._LevelIndex], this._Score.TotalScore);
             if(Levels[this._LevelIndex].Score < this._Score.TotalScore) Levels[this._LevelIndex].Score = this._Score.TotalScore;
             if(this._LevelIndex < 8 && Levels[this._LevelIndex].BronzeScore < this._Score.TotalScore) Levels[this._LevelIndex+1].Unlocked = true;
             this.SaveData();
+            this._UIManager.Show(Levels[this._LevelIndex], this._Score.TotalScore);
             this._ResultsShow = true;
             return;
         }
         this.MoveScene();
+        this._Monster.Update();
     }
     private SaveData() : void
     {
         localStorage.setItem("Level_Data", JSON.stringify(Levels));
     }
-    private MoveScene():void
+    private MoveScene() : void
     {
-        this.Trans.Translation = new TBX.Vertex(this.Trans.Translation.X - 2, this.Trans.Translation.Y, 0);
+        let Speed: number = 6;
+        this.Trans.Translation = new TBX.Vertex(this.Trans.Translation.X - Speed, this.Trans.Translation.Y, 0);
         if(this._BackLastSwap + 1920 <= -this.Trans.Translation.X) this.SwapBackgrounds();
         let Eat:boolean = this._HumanGen.TryEatHumans(-this.Trans.Translation.X + 250, this._Monster.Lane, this._Monster.Color);
         if(Eat) this._Monster.Eat();

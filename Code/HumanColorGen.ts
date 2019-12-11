@@ -13,7 +13,6 @@ class HumanColorGen
     }
     public Gen() : any
     {
-        let R,G,B:number;
         let Index = HumanColorGen.RandomNumber(this._Pool.length);
         let Color = this.GenerateColor(this._Pool[Index]);
         let Score = this.GenerateScore(this._Pool[Index]);

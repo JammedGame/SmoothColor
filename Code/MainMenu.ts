@@ -52,13 +52,13 @@ class MainMenu extends TBX.Scene2D
     }
     private GenerateBackground() : void
     {
-        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/cover.png", "Resources/Textures/Title.png"]);
+        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/menu.png", "Resources/Textures/Title.png"]);
         let Back:TBX.Tile = new TBX.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;
         Back.Index = 0;
         Back.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
-        Back.Trans.Translation = new TBX.Vertex(960, 600, 0);
+        Back.Trans.Translation = new TBX.Vertex(960, 540, 0);
         let Title:TBX.Tile = new TBX.Tile();
         Title.Name = "Title";
         Title.Collection = Backs;
@@ -66,6 +66,6 @@ class MainMenu extends TBX.Scene2D
         Title.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
         Title.Trans.Translation = new TBX.Vertex(960, 500, 0);
         this.Attach(Back);
-        this.Attach(Title);
+        //this.Attach(Title);
     }
 }

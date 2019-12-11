@@ -17,17 +17,16 @@ class FadeEffect
         this._Scene = Scene;
         this._Asset = Asset.Copy();
         this._Color = Color.Copy();
-        this._Asset.Paint = TBX.Color.Black;
+        //this._Asset.Paint = TBX.Color.Black;
         let Trans:number = -this._Scene.Trans.Translation.X;
         this._Asset.Fixed = false;
         this._Color.Fixed = false;
         this._Asset.Trans.Translation.X = 200 + Trans;
         this._Color.Trans.Translation.X = 200 + Trans;
-        this._Scene.Attach(this._Asset);
         this._Scene.Attach(this._Color);
-        this._Scene.Events.Update.push(this.UpdateEffect.bind(this));
+        this._Scene.Attach(this._Asset);
     }
-    private UpdateEffect() : void
+    public UpdateEffect() : void
     {
         if(this._Finished)
         {
@@ -37,8 +36,8 @@ class FadeEffect
                 this.FinishEffect();
             }
         }
-        this._Asset.Paint.A -= 5;
-        this._Color.Paint.A -= 5;
+        this._Asset.Paint.A -= 15;
+        this._Color.Paint.A -= 15;
         if(this._Asset.Paint.A <= 0)
         {
             this._Asset.Paint.A = 0;
@@ -50,6 +49,5 @@ class FadeEffect
     {
         this._Scene.Remove(this._Asset);
         this._Scene.Remove(this._Color);
-        this._Scene.Events.Update.splice(this._Scene.Events.Update.indexOf(this.UpdateEffect), 1);
     }
 }
