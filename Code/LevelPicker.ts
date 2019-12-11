@@ -81,7 +81,7 @@ class LevelPicker extends TBX.Scene2D
     }
     private GenerateBackground() : void
     {
-        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/lvlpickback.png"]);
+        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/back.png"]);
         let Back:TBX.Tile = new TBX.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;

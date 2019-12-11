@@ -59,13 +59,6 @@ class MainMenu extends TBX.Scene2D
         Back.Index = 0;
         Back.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
         Back.Trans.Translation = new TBX.Vertex(960, 540, 0);
-        let Title:TBX.Tile = new TBX.Tile();
-        Title.Name = "Title";
-        Title.Collection = Backs;
-        Title.Index = 1;
-        Title.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
-        Title.Trans.Translation = new TBX.Vertex(960, 500, 0);
         this.Attach(Back);
-        //this.Attach(Title);
     }
 }
