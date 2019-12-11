@@ -1,13 +1,13 @@
 export { ColorMixer }
 
-import Engineer from "./Engineer";
+import * as TBX from 'toybox-engine';
 
 class ColorMixer
 {
-    private _Scene:Engineer.Scene;
-    private _Sprite:Engineer.Sprite;
+    private _Scene:TBX.Scene;
+    private _Sprite:TBX.Sprite;
     private _KeysDown:any;
-    public constructor(Scene:Engineer.Scene2D, Sprite:Engineer.Sprite)
+    public constructor(Scene:TBX.Scene2D, Sprite:TBX.Sprite)
     {
         this._Scene = Scene;
         this._Sprite = Sprite;
@@ -18,9 +18,9 @@ class ColorMixer
         this._KeysDown = {Q:false,W:false,E:false,A:false,S:false,D:false};
         this._Scene.Events.KeyDown.push(this.KeyDown.bind(this));
         this._Scene.Events.KeyUp.push(this.KeyUp.bind(this));
-        this._Scene.Events.TimeTick.push(this.Update.bind(this));
+        this._Scene.Events.Update.push(this.Update.bind(this));
     }
-    private KeyDown(Game:Engineer.Game, Args:any) : void
+    private KeyDown(Game:TBX.Game, Args:any) : void
     {
         if(Args.KeyCode == 81) this._KeysDown.Q = true;
         else if(Args.KeyCode == 87) this._KeysDown.W = true;
@@ -29,7 +29,7 @@ class ColorMixer
         else if(Args.KeyCode == 83) this._KeysDown.S = true;
         else if(Args.KeyCode == 68) this._KeysDown.D = true;
     }
-    private KeyUp(Game:Engineer.Game, Args:any) : void
+    private KeyUp(Game:TBX.Game, Args:any) : void
     {
         if(Args.KeyCode == 81) this._KeysDown.Q = false;
         else if(Args.KeyCode == 87) this._KeysDown.W = false;
@@ -40,7 +40,7 @@ class ColorMixer
     }
     private Update() : void
     {
-        let Color = Engineer.Color.Black;
+        let Color = TBX.Color.Black;
         if(this._KeysDown.Q) Color.R = 255;
         else if(this._KeysDown.A) Color.R = 128;
         else Color.R = 0;

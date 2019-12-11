@@ -1,13 +1,13 @@
 export { MainMenu };
 
-import Engineer from "./Engineer";
+import * as TBX from 'toybox-engine';
 
 import { GameScene } from "./GameScene";
 
-class MainMenu extends Engineer.Scene2D
+class MainMenu extends TBX.Scene2D
 {
-    private _Game:any;
-    private _Runner:any;
+    private _Game: TBX.Game;
+    private _Runner: TBX.Runner;
     public constructor(Runner:any, Game:any)
     {
         super();
@@ -18,54 +18,54 @@ class MainMenu extends Engineer.Scene2D
     public Init() : void
     {
         this.Name = "Menu";
-        this.BackColor = Engineer.Color.White;
+        this.BackColor = TBX.Color.White;
         this.GenerateBackground();
-        let Buttons:any = new Engineer.TileCollection(null, ["Resources/Textures/Play.png", "Resources/Textures/Level.png"]);
-        let Play:any = new Engineer.Tile();
+        let Buttons:any = new TBX.ImageCollection(null, ["Resources/Textures/Play.png", "Resources/Textures/Level.png"]);
+        let Play:any = new TBX.Tile();
         Play.Name = "Play";
         Play.Collection = Buttons;
         Play.Index = 0;
-        Play.Trans.Scale = new Engineer.Vertex(300, 200, 1);
-        Play.Trans.Translation = new Engineer.Vertex(300, 600, 0);
+        Play.Trans.Scale = new TBX.Vertex(300, 200, 1);
+        Play.Trans.Translation = new TBX.Vertex(300, 600, 0);
         Play.Events.MouseDown.push(this.PlayClick.bind(this));
-        this.AddSceneObject(Play);
-        let Level:any = new Engineer.Tile();
+        this.Attach(Play);
+        let Level:any = new TBX.Tile();
         Level.Name = "Level";
         Level.Collection = Buttons;
         Level.Index = 1;
-        Level.Trans.Scale = new Engineer.Vertex(300, 200, 1);
-        Level.Trans.Translation = new Engineer.Vertex(1600, 600, 0);
+        Level.Trans.Scale = new TBX.Vertex(300, 200, 1);
+        Level.Trans.Translation = new TBX.Vertex(1600, 600, 0);
         Level.Events.MouseDown.push(this.LevelClick.bind(this));
-        this.AddSceneObject(Level);
-        this._Game.AddScene(this);
+        this.Attach(Level);
+        this._Game.Attach(this);
     }
     public PlayClick(G:any, Args:any) : void
     {
         let Scene = new GameScene();
-        this._Game.AddScene(Scene);
-        this._Runner.SetResolution(new Engineer.Vertex(1920, 1080, 0), false);
-        this._Runner.SwitchScene("Game", false);
+        this._Game.Attach(Scene);
+        this._Runner.SetResolution(new TBX.Vertex(1920, 1080, 0), false);
+        this._Runner.SwitchScene("Game");
     }
     public LevelClick(G:any, Args:any) : void
     {
-        this._Runner.SwitchScene("LevelPicker", false);
+        this._Runner.SwitchScene("LevelPicker");
     }
     private GenerateBackground() : void
     {
-        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["Resources/Textures/cover.png", "Resources/Textures/Title.png"]);
-        let Back:Engineer.Tile = new Engineer.Tile();
+        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/cover.png", "Resources/Textures/Title.png"]);
+        let Back:TBX.Tile = new TBX.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;
         Back.Index = 0;
-        Back.Trans.Scale = new Engineer.Vertex(1920, 1080, 1);
-        Back.Trans.Translation = new Engineer.Vertex(960, 600, 0);
-        let Title:Engineer.Tile = new Engineer.Tile();
+        Back.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
+        Back.Trans.Translation = new TBX.Vertex(960, 600, 0);
+        let Title:TBX.Tile = new TBX.Tile();
         Title.Name = "Title";
         Title.Collection = Backs;
         Title.Index = 1;
-        Title.Trans.Scale = new Engineer.Vertex(1920, 1080, 1);
-        Title.Trans.Translation = new Engineer.Vertex(960, 500, 0);
-        this.AddSceneObject(Back);
-        this.AddSceneObject(Title);
+        Title.Trans.Scale = new TBX.Vertex(1920, 1080, 1);
+        Title.Trans.Translation = new TBX.Vertex(960, 500, 0);
+        this.Attach(Back);
+        this.Attach(Title);
     }
 }

@@ -1,13 +1,13 @@
 export{Score};
 import { GameScene } from "./GameScene";
-import Engineer from "./Engineer";
+import * as TBX from 'toybox-engine';
 
 class Score
 {
     private _TotalScore:number;
-    private _GameScene:Engineer.Scene2D;
-    private _DigitColl:Engineer.TileCollection = new Engineer.TileCollection(null, []);
-    private _Digit:Engineer.Tile[] = [new Engineer.Tile(),new Engineer.Tile(),new Engineer.Tile()];    
+    private _GameScene:TBX.Scene2D;
+    private _DigitColl:TBX.ImageCollection = new TBX.ImageCollection(null, []);
+    private _Digit:TBX.Tile[] = [new TBX.Tile(),new TBX.Tile(),new TBX.Tile()];    
     public get TotalScore():number { return this._TotalScore; }
     public constructor(GameScene:GameScene)
     {       
@@ -36,9 +36,9 @@ class Score
         this._Digit[i].Collection = this._DigitColl;
         this._Digit[i].Index = 0;
         this._Digit[i].Fixed = true;
-        this._Digit[i].Trans.Scale = new Engineer.Vertex(50, 75, 1);
-        this._Digit[i].Trans.Translation = new Engineer.Vertex(910+75*i, 75, 0);
-        this._GameScene.AddSceneObject(this._Digit[i]);
+        this._Digit[i].Trans.Scale = new TBX.Vertex(50, 75, 1);
+        this._Digit[i].Trans.Translation = new TBX.Vertex(910+75*i, 75, 0);
+        this._GameScene.Attach(this._Digit[i]);
         }
     }
     public UpdateScore(humanPoints:number)

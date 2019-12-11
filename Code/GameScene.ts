@@ -1,6 +1,6 @@
 export { GameScene };
 
-import Engineer from "./Engineer";
+import * as TBX from 'toybox-engine';
 
 import { Monster } from "./Monster";
 import { HumanGen } from "./HumanGen";
@@ -9,14 +9,14 @@ import { Levels } from "./Levels";
 import { IndicatorLVL } from "./IndicatorLVL";
 import { UIManager } from "./UIManager";
 
-class GameScene extends Engineer.Scene2D
+class GameScene extends TBX.Scene2D
 {
     private _ResultsShow:boolean;
     private _LevelIndex:number;
     private _BackIndex:number;
     private _BackLastSwap:number;
-    private _Back1:Engineer.Tile;
-    private _Back2:Engineer.Tile;
+    private _Back1:TBX.Tile;
+    private _Back2:TBX.Tile;
     private _Pause:boolean;
     private _Monster:Monster;
     private _HumanGen:HumanGen;
@@ -31,7 +31,7 @@ class GameScene extends Engineer.Scene2D
         this.Name = "Game";
         this.Init(Level);
         this.Events.KeyDown.push(this.KeyPress.bind(this));
-        this.Events.TimeTick.push(this.SceneUpdate.bind(this));
+        this.Events.Update.push(this.SceneUpdate.bind(this));
     }
     public Init(Level?:number): void
     {
@@ -41,7 +41,7 @@ class GameScene extends Engineer.Scene2D
         this._BackLastSwap = 0;
         this._ResultsShow = false;
         this._UIManager = new UIManager();
-        this.BackColor = Engineer.Color.FromRGBA(255, 255, 255, 255);
+        this.BackColor = TBX.Color.FromRGBA(255, 255, 255, 255);
         this.GenerateBackground()
         this._Monster = new Monster(this);
         this._Score = new Score(this);
@@ -59,10 +59,10 @@ class GameScene extends Engineer.Scene2D
     {
         this._BackIndex = 1;
         this._BackLastSwap = 0;
-        this._Back1.Trans.Translation = new Engineer.Vertex(960, 540, 0);
-        this._Back2.Trans.Translation = new Engineer.Vertex(2880, 540, 0);
+        this._Back1.Trans.Translation = new TBX.Vertex(960, 540, 0);
+        this._Back2.Trans.Translation = new TBX.Vertex(2880, 540, 0);
         this._Monster.Reset();
-        this.Trans.Translation = new Engineer.Vertex(0,0,0);
+        this.Trans.Translation = new TBX.Vertex(0,0,0);
         this._HumanGen.Init(Levels[this._LevelIndex]);
         this._UIManager.Hide();
         this._UIManager.Hint(Levels[this._LevelIndex]);
@@ -109,7 +109,7 @@ class GameScene extends Engineer.Scene2D
     }
     private MoveScene():void
     {
-        this.Trans.Translation = new Engineer.Vertex(this.Trans.Translation.X - 2, this.Trans.Translation.Y, 0);
+        this.Trans.Translation = new TBX.Vertex(this.Trans.Translation.X - 2, this.Trans.Translation.Y, 0);
         if(this._BackLastSwap + 1920 <= -this.Trans.Translation.X) this.SwapBackgrounds();
         let Eat:boolean = this._HumanGen.TryEatHumans(-this.Trans.Translation.X + 250, this._Monster.Lane, this._Monster.Color);
         if(Eat) this._Monster.Eat();
@@ -130,17 +130,17 @@ class GameScene extends Engineer.Scene2D
     }
     private GenerateBackground() : void
     {
-        let Backs:Engineer.TileCollection = new Engineer.TileCollection(null, ["Resources/Textures/back.png"]);
-        let Back:Engineer.Tile = new Engineer.Tile();
+        let Backs:TBX.ImageCollection = new TBX.ImageCollection(null, ["Resources/Textures/back.png"]);
+        let Back:TBX.Tile = new TBX.Tile();
         Back.Name = "Back";
         Back.Collection = Backs;
         Back.Index = 0;
-        Back.Trans.Scale = new Engineer.Vertex(1920, 1085, 1);
-        Back.Trans.Translation = new Engineer.Vertex(960, 540, 0);
+        Back.Trans.Scale = new TBX.Vertex(1920, 1085, 1);
+        Back.Trans.Translation = new TBX.Vertex(960, 540, 0);
         this._Back1 = Back;
         this._Back2 = Back.Copy();
-        this._Back2.Trans.Translation = new Engineer.Vertex(2880, 540, 0);
-        this.AddSceneObject(this._Back1);
-        this.AddSceneObject(this._Back2);
+        this._Back2.Trans.Translation = new TBX.Vertex(2880, 540, 0);
+        this.Attach(this._Back1);
+        this.Attach(this._Back2);
     }
 }

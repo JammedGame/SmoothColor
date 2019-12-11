@@ -1,6 +1,6 @@
 export { HumanColorGen }
 
-import Engineer from "./Engineer";
+import * as TBX from 'toybox-engine';
 
 class HumanColorGen
 {
@@ -10,7 +10,6 @@ class HumanColorGen
     {
         this._Level = Level;
         this.GeneratePool();
-        console.log(this._Pool);
     }
     public Gen() : any
     {
@@ -20,9 +19,9 @@ class HumanColorGen
         let Score = this.GenerateScore(this._Pool[Index]);
         return { Color: Color, Score: Score };
     }
-    private GenerateColor(Value:any) : Engineer.Color
+    private GenerateColor(Value:any) : TBX.Color
     {
-        let Color = Engineer.Color.FromRGBA(this.GenerateChannel(Value[0]),
+        let Color = TBX.Color.FromRGBA(this.GenerateChannel(Value[0]),
                                             this.GenerateChannel(Value[1]),
                                             this.GenerateChannel(Value[2]),255);
         return Color;

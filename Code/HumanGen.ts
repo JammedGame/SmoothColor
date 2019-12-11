@@ -1,7 +1,6 @@
 import { GameScene } from "./GameScene";
-import Engineer from "./Engineer";
+import * as TBX from 'toybox-engine';
 import { Human } from "./Human";
-import { Color } from "engineer-js";
 import { Score } from "./Score";
 import { HumanColorGen } from "./HumanColorGen";
 export { HumanGen };
@@ -54,7 +53,7 @@ class HumanGen
         this._Humans.push(new Human(this._CurrLane, Data.Color, Data.Score, this._TotalDistance, this._GameScene,this._Score));
         this._PrevPosX = this._CurrPosX;
     }
-    public TryEatHumans(PosX:number, Lane:number, Color:Engineer.Color) : boolean
+    public TryEatHumans(PosX:number, Lane:number, Color:TBX.Color) : boolean
     {
         let Eat = false;
         for(let i in this._Humans)
@@ -76,7 +75,7 @@ class HumanGen
         }
         return Eat;
     }
-    public ColorsEqual(Color1:Engineer.Color, Color2:Engineer.Color) : boolean
+    public ColorsEqual(Color1:TBX.Color, Color2:TBX.Color) : boolean
     {
         let Equal = true;
         Equal = Equal && Color1.R == Color2.R;
